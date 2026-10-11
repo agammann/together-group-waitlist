@@ -1,6 +1,6 @@
 # Together status
 
-Together has public runnable source, a public demonstration video, tested group matching, actual local Qwen preference interpretation, and completed customer-approved PayPal sandbox bookings. The final Devpost submission is pending.
+Together has public runnable source, a public demonstration video, tested group matching, actual local Qwen preference interpretation, and completed customer-approved PayPal sandbox bookings. The project was submitted to the PayPal AI Hackathon on October 11, 2026.
 
 The original validation checkpoint was recorded on October 10, 2026 in `America/Los_Angeles`. Publication status was updated on October 11. The local application runs at **http://127.0.0.1:3210/**.
 
@@ -10,10 +10,10 @@ The original validation checkpoint was recorded on October 10, 2026 in `America/
 | --- | --- |
 | Public source | [agammann/together-group-waitlist](https://github.com/agammann/together-group-waitlist), MIT licensed. Initial source commit: `4ed5e88ce2c63544cb3143257f58964bb9caf034`. |
 | Public demonstration video | [Watch on YouTube](https://www.youtube.com/watch?v=5CnNIuXQrl8), public, 1:18, published October 11, 2026. |
-| Devpost project | [Together draft](https://devpost.com/software/together-u0efg3), submission ID `1230557`. Draft prepared; final submission is pending. |
-| Final contest submission | Pending final confirmation and acceptance of the applicable contest terms. |
+| Devpost project | [Together](https://devpost.com/software/together-u0efg3), submission ID `1230557`, submitted to the PayPal AI Hackathon. |
+| Final contest submission | Confirmed October 11, 2026 at 12:26:59 a.m. Pacific (`2026-10-11T07:26:59Z`). |
 
-Source and media publication are authorized. The draft state does not mean the project has been submitted to the contest.
+Devpost displayed its submission success page and marked the project as submitted to the PayPal AI Hackathon. The saved Additional info showed `together-submission-source.zip` attached before final submission. That attachment was the publication snapshot; the final documentation refresh below preserves the same application code.
 
 ## Implemented
 
@@ -53,7 +53,7 @@ The production process was stopped and restarted through `start.ps1`. A fresh br
 
 The original source archive `../together-source.zip` is preserved as a 30-file checkpoint. SHA-256: `7749f593ce311246eef333f27f2e722cafcffc92dfc1a8a8331427b8ed950b2e`. It contains runnable source, the studio photograph, tests, MIT license, and setup documentation, and excludes `.env`, runtime data, `node_modules`, and `dist`. The refreshed `../together-submission-source.zip` contains 31 files, adding the cover graphic and current publication documentation without changing application code. Its checksum is saved in `../together-submission-source.zip.sha256`. `start.ps1` was exercised successfully on this workspace.
 
-The [public repository](https://github.com/agammann/together-group-waitlist) and [1:18 demonstration video](https://www.youtube.com/watch?v=5CnNIuXQrl8) are published. Final Devpost submission remains pending. The [official deadline](https://paypalaihackathon.devpost.com/rules) is November 12, 2026 at noon Pacific. A prepared draft, public repository, or uploaded video does not establish a completed contest submission.
+The [public repository](https://github.com/agammann/together-group-waitlist), [1:18 demonstration video](https://www.youtube.com/watch?v=5CnNIuXQrl8), and [submitted Devpost project](https://devpost.com/software/together-u0efg3) are available. The submission success page confirmed completion; the final source archive updates the documentation to record that result. The [official deadline](https://paypalaihackathon.devpost.com/rules) is November 12, 2026 at noon Pacific.
 
 ## Product limits
 

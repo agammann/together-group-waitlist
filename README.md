@@ -8,7 +8,7 @@ Together finds one ceramics session for a whole group across several acceptable 
 
 The first version serves one studio, Stillwater, with six upcoming sessions in `America/Los_Angeles` and prices in USD. Customers can state their preferences in plain language or use the form. Local Qwen proposes the group size, acceptable sessions, and total budget; customers review the proposal before joining. The booking engine checks those constraints, preserves the group, and manages ten-minute offers. The studio screen shows availability and lets the operator release seats so the workflow can be demonstrated.
 
-The [public source](https://github.com/agammann/together-group-waitlist) is available under the MIT license. Watch the [1:18 demonstration on YouTube](https://www.youtube.com/watch?v=5CnNIuXQrl8) to see the group waitlist, seat hold, customer approval, and confirmed sandbox booking. The Devpost project remains a draft; final contest submission and terms confirmation are pending.
+The [public source](https://github.com/agammann/together-group-waitlist) is available under the MIT license. Watch the [1:18 demonstration on YouTube](https://www.youtube.com/watch?v=5CnNIuXQrl8) to see the group waitlist, seat hold, customer approval, and confirmed sandbox booking. Together was [submitted to the PayPal AI Hackathon on Devpost](https://devpost.com/software/together-u0efg3) on October 11, 2026.
 
 ## The workflow
 

@@ -1,7 +1,7 @@
 {
   "project": "Together",
   "version": "1.0.0",
-  "status": "public_source_and_demo_verified_submission_draft_ready",
+  "status": "hackathon_submitted",
   "checkpointDate": "2026-10-11",
   "checkpointTimezone": "America/Los_Angeles",
   "objective": "Preserve a complete group across acceptable ceramics dates, hold the seats, and confirm a customer-approved PayPal sandbox booking.",
@@ -209,29 +209,41 @@
       ],
       "fileCount": 31,
       "runtimeSourceFilesUnchanged": 21,
-      "checksumPath": "../together-submission-source.zip.sha256"
+      "checksumPath": "../together-submission-source.zip.sha256",
+      "checkpoint": "final_submission_documentation_refresh"
     }
   },
   "publication": {
     "publicRepository": "https://github.com/agammann/together-group-waitlist",
     "publicVideo": "https://www.youtube.com/watch?v=5CnNIuXQrl8",
-    "devpostSubmission": null,
+    "devpostSubmission": "https://devpost.com/software/together-u0efg3",
     "authorized": true,
     "hackathonDeadline": "2026-11-12T12:00:00-08:00",
     "sourceCommit": "4ed5e88ce2c63544cb3143257f58964bb9caf034",
     "videoStatus": "published",
-    "devpostDraft": {
-      "submissionId": 1230557,
-      "url": "https://devpost.com/software/together-u0efg3",
-      "status": "draft_not_submitted"
-    },
-    "finalSubmissionStatus": "draft_ready_awaiting_final_confirmation_and_terms",
-    "devpostSubmitted": false,
+    "finalSubmissionStatus": "submitted",
+    "devpostSubmitted": true,
     "initialSourceCommit": "4ed5e88ce2c63544cb3143257f58964bb9caf034",
     "workingBuildInstructions": "https://github.com/agammann/together-group-waitlist#run-locally",
     "videoVisibility": "public",
     "videoDurationSeconds": 78,
-    "videoPublishedDate": "2026-10-11"
+    "videoPublishedDate": "2026-10-11",
+    "submittedAtUtc": "2026-10-11T07:26:59Z",
+    "submittedDatePacific": "2026-10-11",
+    "submissionId": 1230557,
+    "devpostProject": {
+      "submissionId": 1230557,
+      "status": "submitted",
+      "url": "https://devpost.com/software/together-u0efg3"
+    },
+    "submissionEvidence": "Devpost submission success page and project label confirmed submission to the PayPal AI Hackathon.",
+    "sourceAttachmentAtSubmission": {
+      "filename": "together-submission-source.zip",
+      "sha256": "fede7b015d3d6aa1ff875c4b04a9d42ca8a389b4b5d29f46cddad50b4bd003b0",
+      "savedAdditionalInfoVerified": true,
+      "checkpoint": "publication_snapshot_before_final_submission_documentation",
+      "runtimeSourceFilesIdentical": 21
+    }
   },
   "scopeLimits": [
     "One local studio and six sessions",
@@ -241,8 +253,6 @@
     "No refunds or operational monitoring",
     "Customer adoption untested"
   ],
-  "pending": [
-    "Final Devpost submission and applicable contest terms confirmation"
-  ],
+  "pending": [],
   "originalCheckpointDate": "2026-10-10"
 }
