@@ -1,24 +1,74 @@
 {
-  "checkedAt": "2026-10-11T06:28:28.598Z",
+  "checkedAt": "2026-10-11T07:10:48.749Z",
   "environment": "PayPal sandbox",
   "evidenceType": "Independent provider GET and server-side verification of completed capture",
   "verified": true,
   "providerStatus": "COMPLETED",
-  "orderId": "94624019B5642974G",
+  "orderId": "9K574248NJ4015742",
   "capturedAmountCents": 6400,
   "currency": "USD",
-  "captureId": "45L280797N074744P",
+  "captureId": "0EE44580CL491432M",
   "groupSize": 2,
   "bookingStatus": "booked",
   "session": {
-    "id": "session-1",
+    "id": "session-2",
     "title": "Wheel basics",
-    "startsAt": "2026-10-17T21:00:00.000Z",
+    "startsAt": "2026-10-18T21:00:00.000Z",
     "timezone": "America/Los_Angeles"
   },
   "excludes": [
     "credentials",
     "payer details",
     "access tokens"
+  ],
+  "captureHistory": [
+    {
+      "checkedAt": "2026-10-11T06:28:28.598Z",
+      "environment": "PayPal sandbox",
+      "evidenceType": "Independent provider GET and server-side verification of completed capture",
+      "verified": true,
+      "providerStatus": "COMPLETED",
+      "orderId": "94624019B5642974G",
+      "capturedAmountCents": 6400,
+      "currency": "USD",
+      "captureId": "45L280797N074744P",
+      "groupSize": 2,
+      "bookingStatus": "booked",
+      "session": {
+        "id": "session-1",
+        "title": "Wheel basics",
+        "startsAt": "2026-10-17T21:00:00.000Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "excludes": [
+        "credentials",
+        "payer details",
+        "access tokens"
+      ]
+    },
+    {
+      "checkedAt": "2026-10-11T07:10:48.749Z",
+      "environment": "PayPal sandbox",
+      "evidenceType": "Independent provider GET and server-side verification of completed capture",
+      "verified": true,
+      "providerStatus": "COMPLETED",
+      "orderId": "9K574248NJ4015742",
+      "capturedAmountCents": 6400,
+      "currency": "USD",
+      "captureId": "0EE44580CL491432M",
+      "groupSize": 2,
+      "bookingStatus": "booked",
+      "session": {
+        "id": "session-2",
+        "title": "Wheel basics",
+        "startsAt": "2026-10-18T21:00:00.000Z",
+        "timezone": "America/Los_Angeles"
+      },
+      "excludes": [
+        "credentials",
+        "payer details",
+        "access tokens"
+      ]
+    }
   ]
 }

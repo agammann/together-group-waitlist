@@ -1,8 +1,8 @@
 {
   "project": "Together",
   "version": "1.0.0",
-  "status": "local_prototype_verified",
-  "checkpointDate": "2026-10-10",
+  "status": "public_source_and_demo_verified_submission_draft_ready",
+  "checkpointDate": "2026-10-11",
   "checkpointTimezone": "America/Los_Angeles",
   "objective": "Preserve a complete group across acceptable ceramics dates, hold the seats, and confirm a customer-approved PayPal sandbox booking.",
   "application": {
@@ -83,10 +83,15 @@
       "method": "Stopped production process; restarted with start.ps1; fresh browser confirmed same capture ID and two places"
     },
     "independentPayPalLookup": {
-      "checkedAtUtc": "2026-10-11T06:28:28.598Z",
+      "checkedAtUtc": "2026-10-11T07:10:48.749Z",
       "status": "passed",
       "evidence": "docs/paypal-evidence.json",
-      "providerStatus": "COMPLETED"
+      "providerStatus": "COMPLETED",
+      "previousCheckedAtUtc": "2026-10-11T06:28:28.598Z",
+      "verifiedCaptureIds": [
+        "45L280797N074744P",
+        "0EE44580CL491432M"
+      ]
     },
     "freshArchive": {
       "originalNodeModulesCopied": false,
@@ -102,22 +107,73 @@
       ],
       "privateEnvironmentUsed": false,
       "notes": "Final demo and checkpoint documentation updated after validation; packaged runtime source matches the tested extraction"
+    },
+    "publicSourceTree": {
+      "branch": "main",
+      "visibility": "public",
+      "matchedTestedRuntimeSourceFiles": 21,
+      "commit": "4ed5e88ce2c63544cb3143257f58964bb9caf034",
+      "status": "passed",
+      "matchedPublishedBlobs": 30,
+      "license": "MIT"
     }
   },
   "realSandboxEvidence": {
-    "status": "completed_and_server_verified",
-    "orderId": "94624019B5642974G",
-    "captureId": "45L280797N074744P",
-    "amount": "64.00",
-    "currency": "USD",
-    "groupSize": 2,
-    "session": "Wheel basics",
-    "sessionLocalDate": "2026-10-17",
-    "sessionLocalTime": "14:00",
     "timezone": "America/Los_Angeles",
-    "checkoutReturn": "Automatic return observed",
-    "confirmation": "Backend verified the sandbox capture before booking confirmation",
-    "simulated": false
+    "orderId": "9K574248NJ4015742",
+    "groupSize": 2,
+    "amount": "64.00",
+    "sessionLocalTime": "14:00",
+    "captureId": "0EE44580CL491432M",
+    "currency": "USD",
+    "status": "completed_and_server_verified",
+    "sessionLocalDate": "2026-10-18",
+    "simulated": false,
+    "independentLookup": {
+      "checkedAtUtc": "2026-10-11T07:10:48.749Z",
+      "providerStatus": "COMPLETED",
+      "status": "passed",
+      "evidence": "docs/paypal-evidence.json"
+    },
+    "session": "Wheel basics",
+    "confirmation": "Backend verified the sandbox capture before confirmation; independent provider GET confirmed the completed order and exact booking references.",
+    "captureHistory": [
+      {
+        "status": "completed_and_server_verified",
+        "orderId": "94624019B5642974G",
+        "captureId": "45L280797N074744P",
+        "amount": "64.00",
+        "currency": "USD",
+        "groupSize": 2,
+        "session": "Wheel basics",
+        "sessionLocalDate": "2026-10-17",
+        "sessionLocalTime": "14:00",
+        "timezone": "America/Los_Angeles",
+        "checkoutReturn": "Automatic return observed",
+        "confirmation": "Backend verified the sandbox capture before booking confirmation",
+        "simulated": false
+      },
+      {
+        "timezone": "America/Los_Angeles",
+        "orderId": "9K574248NJ4015742",
+        "groupSize": 2,
+        "amount": "64.00",
+        "sessionLocalTime": "14:00",
+        "captureId": "0EE44580CL491432M",
+        "currency": "USD",
+        "status": "completed_and_server_verified",
+        "sessionLocalDate": "2026-10-18",
+        "simulated": false,
+        "independentLookup": {
+          "checkedAtUtc": "2026-10-11T07:10:48.749Z",
+          "providerStatus": "COMPLETED",
+          "status": "passed",
+          "evidence": "docs/paypal-evidence.json"
+        },
+        "session": "Wheel basics",
+        "confirmation": "Backend verified the sandbox capture before confirmation; independent provider GET confirmed the completed order and exact booking references."
+      }
+    ]
   },
   "artifacts": {
     "readme": "README.md",
@@ -134,15 +190,48 @@
         ".data",
         "node_modules",
         "dist"
-      ]
+      ],
+      "checkpoint": "original_validated_source_snapshot",
+      "sha256": "7749f593ce311246eef333f27f2e722cafcffc92dfc1a8a8331427b8ed950b2e",
+      "fileCount": 30,
+      "bytes": 2270408
+    },
+    "cover": "docs/together-cover.png",
+    "publicSourceArchive": {
+      "path": "../together-submission-source.zip",
+      "status": "ready",
+      "excludes": [
+        ".env",
+        ".data",
+        "node_modules",
+        "dist",
+        ".git"
+      ],
+      "fileCount": 31,
+      "runtimeSourceFilesUnchanged": 21,
+      "checksumPath": "../together-submission-source.zip.sha256"
     }
   },
   "publication": {
-    "publicRepository": null,
-    "publicVideo": null,
+    "publicRepository": "https://github.com/agammann/together-group-waitlist",
+    "publicVideo": "https://www.youtube.com/watch?v=5CnNIuXQrl8",
     "devpostSubmission": null,
-    "authorized": false,
-    "hackathonDeadline": "2026-11-12T12:00:00-08:00"
+    "authorized": true,
+    "hackathonDeadline": "2026-11-12T12:00:00-08:00",
+    "sourceCommit": "4ed5e88ce2c63544cb3143257f58964bb9caf034",
+    "videoStatus": "published",
+    "devpostDraft": {
+      "submissionId": 1230557,
+      "url": "https://devpost.com/software/together-u0efg3",
+      "status": "draft_not_submitted"
+    },
+    "finalSubmissionStatus": "draft_ready_awaiting_final_confirmation_and_terms",
+    "devpostSubmitted": false,
+    "initialSourceCommit": "4ed5e88ce2c63544cb3143257f58964bb9caf034",
+    "workingBuildInstructions": "https://github.com/agammann/together-group-waitlist#run-locally",
+    "videoVisibility": "public",
+    "videoDurationSeconds": 78,
+    "videoPublishedDate": "2026-10-11"
   },
   "scopeLimits": [
     "One local studio and six sessions",
@@ -153,7 +242,7 @@
     "Customer adoption untested"
   ],
   "pending": [
-    "Public repository and video publication when authorized",
-    "Contest submission and binding terms confirmation when authorized"
-  ]
+    "Final Devpost submission and applicable contest terms confirmation"
+  ],
+  "originalCheckpointDate": "2026-10-10"
 }

@@ -1,8 +1,19 @@
 # Together status
 
-Together is running locally with tested group matching, real local Qwen preference interpretation, and a completed PayPal sandbox booking for two people.
+Together has public runnable source, a public demonstration video, tested group matching, actual local Qwen preference interpretation, and completed customer-approved PayPal sandbox bookings. The final Devpost submission is pending.
 
-This checkpoint was recorded on October 10, 2026 in `America/Los_Angeles`. The app is available at **http://127.0.0.1:3210/**.
+The original validation checkpoint was recorded on October 10, 2026 in `America/Los_Angeles`. Publication status was updated on October 11. The local application runs at **http://127.0.0.1:3210/**.
+
+## Publication
+
+| Deliverable | State |
+| --- | --- |
+| Public source | [agammann/together-group-waitlist](https://github.com/agammann/together-group-waitlist), MIT licensed. Initial source commit: `4ed5e88ce2c63544cb3143257f58964bb9caf034`. |
+| Public demonstration video | [Watch on YouTube](https://www.youtube.com/watch?v=5CnNIuXQrl8), public, 1:18, published October 11, 2026. |
+| Devpost project | [Together draft](https://devpost.com/software/together-u0efg3), submission ID `1230557`. Draft prepared; final submission is pending. |
+| Final contest submission | Pending final confirmation and acceptance of the applicable contest terms. |
+
+Source and media publication are authorized. The draft state does not mean the project has been submitted to the contest.
 
 ## Implemented
 
@@ -20,10 +31,11 @@ The customer and studio screens manage Stillwater's own six upcoming ceramics se
 | Production root route and assets | Passed regression checks | A root-route 404 was corrected and the production route/asset regression checks passed. |
 | Real PayPal sandbox checkout | Completed and server verified | Buyer approved a specific two-person booking; the app returned automatically and verified the capture before confirming it. |
 | Fresh source archive | Passed | Extracted separately; frozen-lockfile install, production build, all 80 tests, and HTTP smoke check passed with Node 24.19.0 and pnpm 11.25.0. No private environment file or original node_modules was copied. |
+| Public source tree | Verified | Public `main` matched the local commit; all 30 published blobs matched sanitized source, and all 21 runtime/source files checked matched the tested extraction byte for byte. |
 
 The Qwen checks included a complete two-person weekend-afternoon request, a request missing group size and budget, and a per-person budget converted to a group total. Interpretation is a constrained proposal; server validation and customer review still apply.
 
-## Observed sandbox booking
+## Observed sandbox bookings
 
 - Session: Wheel basics, Saturday October 17, 2026 at 2:00 p.m. Los Angeles time.
 - Group: two people.
@@ -33,13 +45,15 @@ The Qwen checks included a complete two-person weekend-afternoon request, a requ
 
 This is actual provider evidence. It is distinct from simulated checkout and the provider stubs used in automated checks. An independent PayPal GET at `2026-10-11T06:28:28Z` confirmed the order and capture as `COMPLETED`, including the exact USD total and booking references. Sanitized evidence is saved in `docs/paypal-evidence.json`.
 
+The Sunday demonstration also confirmed two places in Wheel basics on October 18, 2026 at 2:00 p.m. Los Angeles time, for $64.00 USD. Its order is `9K574248NJ4015742` and its capture is `0EE44580CL491432M`. The application displayed the confirmed booking. An independent provider GET at `2026-10-11T07:10:48.749Z`, October 11 at 12:10:48 a.m. Pacific, verified the completed order, capture, group size, exact total, and booking references. The sanitized evidence file preserves both this Sunday capture and the earlier Saturday capture.
+
 ## Delivery and remaining submission work
 
 The production process was stopped and restarted through `start.ps1`. A fresh browser tab retained the confirmed two-person receipt and the same capture ID. The studio showed one booked group, no active holds, and the booked session at 8 of 8 places. The fresh production page reported no console warnings or errors. The final mobile receipt had a 390-pixel viewport and no horizontal overflow.
 
-The source archive `../together-source.zip` contains the runnable source, original studio photograph, tests, MIT license, and setup documentation. It excludes `.env`, runtime data, `node_modules`, and `dist`. The README provides installation, model setup, build, and run instructions. `start.ps1` was exercised successfully on this workspace.
+The original source archive `../together-source.zip` is preserved as a 30-file checkpoint. SHA-256: `7749f593ce311246eef333f27f2e722cafcffc92dfc1a8a8331427b8ed950b2e`. It contains runnable source, the studio photograph, tests, MIT license, and setup documentation, and excludes `.env`, runtime data, `node_modules`, and `dist`. The refreshed `../together-submission-source.zip` contains 31 files, adding the cover graphic and current publication documentation without changing application code. Its checksum is saved in `../together-submission-source.zip.sha256`. `start.ps1` was exercised successfully on this workspace.
 
-No public repository, public demo video, or Devpost submission has been created or authorized for this project. Contest materials still require publication and a visible recording before submission. The current [official deadline](https://paypalaihackathon.devpost.com/rules) is November 12, 2026 at noon Pacific.
+The [public repository](https://github.com/agammann/together-group-waitlist) and [1:18 demonstration video](https://www.youtube.com/watch?v=5CnNIuXQrl8) are published. Final Devpost submission remains pending. The [official deadline](https://paypalaihackathon.devpost.com/rules) is November 12, 2026 at noon Pacific. A prepared draft, public repository, or uploaded video does not establish a completed contest submission.
 
 ## Product limits
 
