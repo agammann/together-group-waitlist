@@ -1,0 +1,159 @@
+{
+  "project": "Together",
+  "version": "1.0.0",
+  "status": "local_prototype_verified",
+  "checkpointDate": "2026-10-10",
+  "checkpointTimezone": "America/Los_Angeles",
+  "objective": "Preserve a complete group across acceptable ceramics dates, hold the seats, and confirm a customer-approved PayPal sandbox booking.",
+  "application": {
+    "url": "http://127.0.0.1:3210/",
+    "bindAddress": "127.0.0.1",
+    "studio": "Stillwater",
+    "sessionCount": 6,
+    "sessionDates": "Generated upcoming dates relative to initial state creation",
+    "timezone": "America/Los_Angeles",
+    "currency": "USD",
+    "holdMinutes": 10,
+    "stateFile": ".data/state.json"
+  },
+  "runtime": {
+    "recommendedNodeVersion": "24",
+    "packageManager": "pnpm",
+    "commands": [
+      "pnpm install",
+      "pnpm build",
+      "pnpm start"
+    ],
+    "model": "qwen3.5:4b-q4_K_M",
+    "modelEndpoint": "http://127.0.0.1:11434",
+    "paypalEnvironment": "sandbox",
+    "credentials": "Configured privately in an ignored local .env; excluded from the source archive"
+  },
+  "checks": {
+    "productionBuild": {
+      "status": "passed",
+      "command": "pnpm build"
+    },
+    "automatedTests": {
+      "status": "passed",
+      "command": "pnpm test",
+      "passed": 80,
+      "total": 80,
+      "suites": {
+        "booking": 13,
+        "providers": 51,
+        "http": 16
+      },
+      "providerEvidence": "Controlled provider stubs; not real payment or model calls"
+    },
+    "httpSmoke": {
+      "status": "passed",
+      "command": "pnpm check:http",
+      "environment": "Isolated server with temporary state and provider stubs"
+    },
+    "localQwen": {
+      "status": "passed",
+      "command": "pnpm check:qwen",
+      "passed": 3,
+      "total": 3,
+      "completedAtUtc": "2026-10-11T06:04:59Z",
+      "model": "qwen3.5:4b-q4_K_M",
+      "evidence": "Actual local Ollama calls; constrained proposals checked without fallback"
+    },
+    "renderedLayouts": {
+      "status": "verified",
+      "desktop": {
+        "width": 1487,
+        "height": 1058
+      },
+      "mobile": {
+        "width": 390
+      },
+      "scope": "In-app browser: desktop receipt and studio; 390x844 mobile receipt with no horizontal overflow; fresh production console had no warnings or errors"
+    },
+    "productionRoutesAndAssets": {
+      "status": "passed",
+      "notes": "Root-route 404 corrected; production route and asset regression checks passed"
+    },
+    "liveReceiptRestartPersistence": {
+      "activeHolds": 0,
+      "status": "passed",
+      "bookedSessionOccupancy": "8 of 8",
+      "studioBookedGroups": 1,
+      "method": "Stopped production process; restarted with start.ps1; fresh browser confirmed same capture ID and two places"
+    },
+    "independentPayPalLookup": {
+      "checkedAtUtc": "2026-10-11T06:28:28.598Z",
+      "status": "passed",
+      "evidence": "docs/paypal-evidence.json",
+      "providerStatus": "COMPLETED"
+    },
+    "freshArchive": {
+      "originalNodeModulesCopied": false,
+      "status": "passed",
+      "pnpm": "11.25.0",
+      "node": "24.19.0",
+      "testsPassed": 80,
+      "commands": [
+        "pnpm install --frozen-lockfile",
+        "pnpm build",
+        "pnpm test",
+        "pnpm check:http"
+      ],
+      "privateEnvironmentUsed": false,
+      "notes": "Final demo and checkpoint documentation updated after validation; packaged runtime source matches the tested extraction"
+    }
+  },
+  "realSandboxEvidence": {
+    "status": "completed_and_server_verified",
+    "orderId": "94624019B5642974G",
+    "captureId": "45L280797N074744P",
+    "amount": "64.00",
+    "currency": "USD",
+    "groupSize": 2,
+    "session": "Wheel basics",
+    "sessionLocalDate": "2026-10-17",
+    "sessionLocalTime": "14:00",
+    "timezone": "America/Los_Angeles",
+    "checkoutReturn": "Automatic return observed",
+    "confirmation": "Backend verified the sandbox capture before booking confirmation",
+    "simulated": false
+  },
+  "artifacts": {
+    "readme": "README.md",
+    "license": "LICENSE",
+    "status": "STATUS.md",
+    "demoScript": "docs/DEMO.md",
+    "research": "docs/RESEARCH.md",
+    "designRationale": "docs/DESIGN.md",
+    "sourceArchive": {
+      "path": "../together-source.zip",
+      "status": "ready",
+      "excluded": [
+        ".env",
+        ".data",
+        "node_modules",
+        "dist"
+      ]
+    }
+  },
+  "publication": {
+    "publicRepository": null,
+    "publicVideo": null,
+    "devpostSubmission": null,
+    "authorized": false,
+    "hackathonDeadline": "2026-11-12T12:00:00-08:00"
+  },
+  "scopeLimits": [
+    "One local studio and six sessions",
+    "No external booking-platform integration",
+    "No paid messaging or email/SMS delivery",
+    "No production account/role system or tenancy",
+    "No refunds or operational monitoring",
+    "Customer adoption untested"
+  ],
+  "pending": [
+    "Public repository and video publication when authorized",
+    "Contest submission and binding terms confirmation when authorized"
+  ]
+}
