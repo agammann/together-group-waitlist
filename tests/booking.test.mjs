@@ -234,3 +234,32 @@ test('atomic persistence survives reopening and a failed transaction leaves the 
     await rm(folder, { recursive: true, force: true });
   }
 });
+
+test('ambiguous capture survives a restart and keeps seats until verified exactly once', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'together-recovery-'));
+  const file = join(dir, 'state.json');
+  try {
+    const first = fixture(file);
+    const joined = await hold(first, { sessionIds: [S1] });
+    await prepareCapture(first, joined);
+    await first.service.failCapture(joined.request.id, { orderId: 'PAYPAL_ORDER_001', definitive: false });
+    const restarted = fixture(file);
+    restarted.advance(15 * 60_000);
+    const pending = await restarted.service.snapshot({ requestId: joined.request.id, token: joined.token });
+    assert.equal(pending.request.status, 'reconciling');
+    assert.equal(pending.sessions[0].heldSeats, 2);
+    await assert.rejects(restarted.service.cancel(joined.request.id, joined.token), { code: 'PAYMENT_PENDING' });
+    const resume = await restarted.service.beginCapture(joined.request.id, joined.token, { orderId: 'PAYPAL_ORDER_001' });
+    assert.equal(resume.action, 'reconcile');
+    await restarted.service.completeCapture(joined.request.id, verifiedReceipt());
+    await restarted.service.completeCapture(joined.request.id, verifiedReceipt());
+    const booked = await restarted.service.snapshot({ requestId: joined.request.id, token: joined.token });
+    assert.equal(booked.request.status, 'booked');
+    assert.equal(booked.sessions[0].bookedSeats, 8);
+    assert.equal(booked.sessions[0].heldSeats, 0);
+    assert.equal(booked.stats.totalBookings, 1);
+  } finally {
+    assert.ok(resolve(dir).startsWith(`${resolve(tmpdir())}${sep}`));
+    await rm(dir, { recursive: true, force: true });
+  }
+});
