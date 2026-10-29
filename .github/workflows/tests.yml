@@ -12,7 +12,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      DATA_FILE: ${{ runner.temp }}/together-ci/state.json
+      DATA_FILE: ${{ github.workspace }}/.ci-state/state.json
       DEMO_MODE: 'true'
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
