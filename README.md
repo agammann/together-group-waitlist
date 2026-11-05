@@ -82,7 +82,7 @@ pnpm check:http
 
 Build first: the production route and asset checks require `dist/`. `pnpm test` runs the automated checks. The Qwen check makes real calls to the configured local model and needs Ollama running. The HTTP check starts an isolated server with provider stubs and temporary state; it does not require or modify the main running app. Current results are recorded in [STATUS.md](STATUS.md) and [DELIVERY.json](DELIVERY.json). Test doubles and simulated checkout do not constitute real PayPal sandbox evidence.
 
-The validated source checkpoint passed all **80 automated tests**, **3 actual local Qwen checks**, and a fresh archive install/build/test pass. Actual customer-approved sandbox bookings are recorded separately in [the payment evidence](docs/paypal-evidence.json). These results describe the local prototype and its tested constraints.
+The preserved delivery checkpoint passed all **80 automated tests**, **3 actual local Qwen checks**, and a fresh archive install/build/test pass. Actual customer-approved sandbox bookings are recorded separately in [the payment evidence](docs/paypal-evidence.json). These results describe that checkpoint and its tested constraints. Run `pnpm test` after `pnpm build` for the current checkout's count and result; later tests are not retroactively part of the preserved delivery evidence.
 
 ## Scope and payment rules
 
