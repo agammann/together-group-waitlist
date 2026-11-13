@@ -23,10 +23,10 @@ importers:
         version: 1.64.0
       '@vitejs/plugin-react':
         specifier: ^5.0.4
-        version: 5.2.0(vite@7.3.7)
+        version: 5.2.0(vite@7.3.8)
       vite:
-        specifier: ^7.1.12
-        version: 7.3.7
+        specifier: ^7.3.8
+        version: 7.3.8
 
 packages:
 
@@ -605,8 +605,8 @@ packages:
     peerDependencies:
       browserslist: '>= 4.21.0'
 
-  vite@7.3.7:
-    resolution: {integrity: sha512-AHEzTORMbi7/7aXp7w7KZ5+DCUdSeLsJz0grY8xHpc9DHdYb0vQu6DqJfm2tOw3gDExNgPgnJTXxM6syYFHaCA==}
+  vite@7.3.8:
+    resolution: {integrity: sha512-3tTi78MAKhVk9h+YZVXMQ8POmneJuE97QUPAWtJghHzhH7BAyiqQOC2KZh1DWOsu/USB2cRXhznPByaabvYXfw==}
     engines: {node: ^20.19.0 || >=22.12.0}
     hasBin: true
     peerDependencies:
@@ -968,7 +968,7 @@ snapshots:
 
   '@types/estree@1.0.9': {}
 
-  '@vitejs/plugin-react@5.2.0(vite@7.3.7)':
+  '@vitejs/plugin-react@5.2.0(vite@7.3.8)':
     dependencies:
       '@babel/core': 7.29.7
       '@babel/plugin-transform-react-jsx-self': 7.29.7(@babel/core@7.29.7)
@@ -976,7 +976,7 @@ snapshots:
       '@rolldown/pluginutils': 1.0.0-rc.3
       '@types/babel__core': 7.20.5
       react-refresh: 0.18.0
-      vite: 7.3.7
+      vite: 7.3.8
     transitivePeerDependencies:
       - supports-color
 
@@ -1130,7 +1130,7 @@ snapshots:
       escalade: 3.2.0
       picocolors: 1.1.1
 
-  vite@7.3.7:
+  vite@7.3.8:
     dependencies:
       esbuild: 0.28.2
       fdir: 6.5.0(picomatch@4.0.7)
