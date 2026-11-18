@@ -112,13 +112,27 @@ function BookingStatus({own,session,countdown,state,busy,act,pay}) {
   const [consent,setConsent]=useState(false);
   useEffect(()=>setConsent(false),[own.offer?.id]);
   const safe=own.status==='offered';
+  const paypalConfigured=state.providers.paypal.configured;
+  const canSimulateCheckout=safe && state.demoMode && !own.offer.orderId;
+  const groupPlaces=`${own.groupSize} ${own.groupSize===1?'place':'places'}`;
   return <div className="status-panel">
     <span className={`status ${own.status}`}>{({waiting:'On the waitlist',offered:'Your group has a place',capturing:'Confirming payment',reconciling:'Checking with PayPal',booked:'You’re booked together',expired:'Your offer has expired',cancelled:'Cancelled'})[own.status]}</span>
     <h2>{own.status==='waiting'?'Good company. Worth the wait.':own.status==='offered'?'There’s room for all of you.':own.status==='booked'?'See you at the wheel.':own.status==='expired'?'Let’s find another opening.':'Your places are protected.'}</h2>
-    <p className="group-name">{own.customerName} · {own.groupSize} {own.groupSize===1?'place':'places'} together</p>
-    {own.status==='waiting' && <><div className="wait-illustration" aria-hidden="true"><div/><div/></div><p>We’re watching {own.sessionIds.length} acceptable dates for your whole group, up to {money(own.maxTotalCents)} total.</p><p className="muted">One place opening isn’t enough for a group of two. We wait until everyone fits.</p><div className="hint">Try the Studio view: release a place on one of your chosen dates to see a group offer appear.</div></>}
-    {own.offer && ['offered','capturing','reconciling','booked'].includes(own.status) && <div className="offer-details"><h3>{session?.title || 'Your session'}</h3><p>{session?when(session.startsAt):''}</p><p>{session?`${time(session.startsAt)} – ${time(session.endsAt)} · Pacific`:''}</p><div className="total"><span>{own.groupSize} places · total</span><strong>{money(own.offer.totalCents)}</strong></div>{safe && <div className="timer"><span>All your places held for</span><b>{countdown}</b></div>}</div>}
-    {safe && <><label className="consent"><input type="checkbox" id="consent" checked={consent} onChange={e=>setConsent(e.target.checked)}/>I approve this date and {money(own.offer.totalCents)} total for my whole group.</label><button id="paypal-action" className="paypal-button" disabled={!consent||!!busy||!state.providers.paypal.configured} onClick={pay}>Approve with <PayPal/><Arrow/></button><p className="quiet">Sandbox checkout · no real money</p>{state.demoMode && !own.offer.orderId && <button className="outline demo-checkout" disabled={!consent||!!busy} onClick={()=>act('Completing simulated booking',()=>api('/api/demo/complete',{}))}>Try demo checkout (no payment)</button>}{!state.providers.paypal.configured && <p className="muted">PayPal sandbox credentials aren’t configured. The demo checkout is available.</p>}</>}
+    <p className="group-name">{own.customerName} · {groupPlaces} together</p>
+    {own.status==='waiting' && <>
+      <div className="wait-illustration" aria-hidden="true"><div/><div/></div>
+      <p>We’re watching {own.sessionIds.length} acceptable {own.sessionIds.length===1?'date':'dates'} for your whole group, up to {money(own.maxTotalCents)} total.</p>
+      <p className="muted">An offer appears when an acceptable session has room for your whole group.</p>
+      {state.demoMode && <div className="hint">In Studio, release places on one of your chosen dates to see a group offer appear.</div>}
+    </>}
+    {own.offer && ['offered','capturing','reconciling','booked'].includes(own.status) && <div className="offer-details"><h3>{session?.title || 'Your session'}</h3><p>{session?when(session.startsAt):''}</p><p>{session?`${time(session.startsAt)} – ${time(session.endsAt)} · Pacific`:''}</p><div className="total"><span>{groupPlaces} · total</span><strong>{money(own.offer.totalCents)}</strong></div>{safe && <div className="timer"><span>All your places held for</span><b>{countdown}</b></div>}</div>}
+    {safe && <>
+      <label className="consent"><input type="checkbox" id="consent" checked={consent} disabled={!paypalConfigured && !canSimulateCheckout} onChange={e=>setConsent(e.target.checked)}/>I approve this date and {money(own.offer.totalCents)} total for my whole group.</label>
+      <button id="paypal-action" className="paypal-button" disabled={!consent||!!busy||!paypalConfigured} onClick={pay}>Approve with <PayPal/><Arrow/></button>
+      <p className="quiet">Sandbox checkout · no real money</p>
+      {canSimulateCheckout && <button className="outline demo-checkout" disabled={!consent||!!busy} onClick={()=>act('Completing simulated booking',()=>api('/api/demo/complete',{}))}>Try demo checkout (no payment)</button>}
+      {!paypalConfigured && <p className="muted">{canSimulateCheckout?'PayPal sandbox is unavailable. You can try the simulated checkout.':'Checkout is unavailable until PayPal sandbox is configured.'}</p>}
+    </>}
     {['capturing','reconciling'].includes(own.status) && <><p>Your group’s places stay reserved while the server checks the order. Refreshing will keep this booking safe.</p><button className="primary" disabled={!!busy} onClick={()=>act('Checking payment status',()=>api('/api/paypal/reconcile',{orderId:own.offer.orderId}))}>Check payment status <Arrow/></button></>}
     {safe && own.offer.orderId && <button className="outline" disabled={!!busy} onClick={()=>act('Checking payment status',()=>api('/api/paypal/reconcile',{orderId:own.offer.orderId}))}>Already approved? Check payment status</button>}
     {own.status==='expired' && <><p>The 10-minute hold ended. All {own.groupSize} places have been released. No payment was taken.</p><button className="primary" disabled={!!busy} onClick={()=>act('Rejoining the waitlist',()=>api('/api/requests/retry',{}))}>Rejoin with these preferences <Arrow/></button><button className="text-button" disabled={!!busy} onClick={()=>act('Changing your preferences',()=>api('/api/requests/new',{}))}>Change your preferences</button></>}

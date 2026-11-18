@@ -6,7 +6,7 @@
 
 Together finds one ceramics session for a whole group across several acceptable dates, holds every seat, and turns a customer-approved PayPal sandbox payment into a confirmed booking.
 
-The first version serves one studio, Stillwater, with six upcoming sessions in `America/Los_Angeles` and prices in USD. Customers can state their preferences in plain language or use the form. Local Qwen proposes the group size, acceptable sessions, and total budget; customers review the proposal before joining. The booking engine checks those constraints, preserves the group, and manages ten-minute offers. The studio screen shows availability and lets the operator release seats so the workflow can be demonstrated.
+The local app serves one studio, Stillwater, with six upcoming sessions in `America/Los_Angeles` and prices in USD. Customers can state their preferences in plain language or use the form. Local Qwen proposes the group size, acceptable sessions, and total budget. Customers review the proposal before joining. The booking engine checks those constraints, preserves the group, and manages ten-minute offers. The studio screen shows availability and lets the operator release seats in the local demonstration.
 
 The [public source](https://github.com/agammann/together-group-waitlist) is available under the MIT license. Watch the [1:18 demonstration on YouTube](https://www.youtube.com/watch?v=5CnNIuXQrl8) to see the group waitlist, seat hold, customer approval, and confirmed sandbox booking. Together was [submitted to the PayPal AI Hackathon on Devpost](https://devpost.com/software/together-u0efg3) on October 11, 2026.
 
@@ -18,43 +18,47 @@ The customer can inspect their request, cancel before payment is being resolved,
 
 ## Run locally
 
-Prerequisites: Node.js 24, pnpm, and [Ollama](https://ollama.com/). The model is `qwen3.5:4b-q4_K_M`.
+Use Node.js 24 and pnpm 11.25.0, the versions used for the project checks. A fresh checkout supports the manual form, studio demo and labeled checkout simulation without Ollama, PayPal credentials or an `.env` file.
 
 ```powershell
 git clone https://github.com/agammann/together-group-waitlist.git
 cd together-group-waitlist
 pnpm install --frozen-lockfile
-ollama pull qwen3.5:4b-q4_K_M
-Copy-Item .env.example .env
-```
-
-Ollama normally runs as a service. If it is not running, start `ollama serve` in another terminal. Its default address is `http://127.0.0.1:11434`.
-
-Fill in sandbox configuration in the local `.env` file. Then:
-
-```powershell
 pnpm build
 pnpm start
 ```
 
-Open **http://127.0.0.1:3210**. The server binds to loopback. Keep `.env` and local state out of source control. The initial six session dates are generated relative to the first run; the studio uses Los Angeles time throughout. Schedule, requests, offers, and receipts persist in `.data/state.json`; keep that file between restarts if you want to retain the demo.
+Open **http://127.0.0.1:3210**. The server binds to loopback. Enter your dates, group size and budget manually, then follow **What to try** below. The first run creates six upcoming dates in Los Angeles time. Schedule, requests, offers and receipts persist in `.data/state.json`. Keep that file to preserve the demo when restarting.
 
-`pnpm start` runs `node --env-file-if-exists=.env server.mjs`. For development, `pnpm dev` runs the server with Vite embedded. On this Windows workspace, `start.ps1` can use the bundled Node/pnpm runtime.
+`pnpm start` runs `node --env-file-if-exists=.env server.mjs`. For development, `pnpm dev` runs the server with Vite embedded. On Windows, `start.ps1` uses installed Node and pnpm, or a local Codex pnpm fallback when present.
+
+### Optional local preference interpretation
+
+Install [Ollama](https://ollama.com/) and run its local server at `http://127.0.0.1:11434`. Together accepts this exact address. Pull the model if it is absent from your local installation:
+
+```powershell
+ollama pull qwen3.5:4b-q4_K_M
+```
+
+Use **Use my preferences** in the app. Review the dates, group size and total budget before joining. The manual form remains available if local interpretation is unavailable.
+
+To change settings, copy `.env.example` to `.env`. Keep `.env` and local state out of source control.
 
 | Setting | Purpose |
 | --- | --- |
 | `PORT=3210` | Local web address port |
-| `OLLAMA_BASE_URL=http://127.0.0.1:11434` | Local Ollama connection |
+| `DATA_FILE` | Optional path to an independent state file. Defaults to `.data/state.json` |
+| `OLLAMA_BASE_URL=http://127.0.0.1:11434` | The supported local Ollama address |
 | `QWEN_MODEL=qwen3.5:4b-q4_K_M` | Model used to interpret preferences |
 | `PAYPAL_CLIENT_ID` | Sandbox app client ID |
 | `PAYPAL_CLIENT_SECRET` | Sandbox app secret, kept on the server |
 | `DEMO_MODE=true` | Enables local studio controls and labeled checkout simulation |
 
-`DEMO_MODE=false` disables studio mutation and simulated checkout endpoints. This setting is not a replacement for production authentication.
+`DEMO_MODE=false` hides the Studio view and disables the simulated checkout. The local app does not have production authentication.
 
 ## PayPal sandbox setup
 
-Create or select a sandbox app in the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/applications/sandbox). Put its `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET` in your local `.env`. Use a separate sandbox personal account for buyer approval. The app calls the sandbox API; no live-money checkout is supported.
+For an actual sandbox checkout, create or select a sandbox app in the [PayPal Developer Dashboard](https://developer.paypal.com/dashboard/applications/sandbox). Put its `PAYPAL_CLIENT_ID` and `PAYPAL_CLIENT_SECRET` in your local `.env`. Use a separate sandbox personal account for buyer approval. The app calls the sandbox API and uses simulated funds.
 
 The server creates an order for the held seats using the studio price. The customer approves the booking in PayPal. The server then captures and verifies the payment before confirming the reservation. A return URL or browser message cannot confirm a booking.
 
@@ -93,7 +97,7 @@ The preserved delivery checkpoint passed all **80 automated tests**, **3 actual 
 - Session prices, quantities, and payment verification are owned by the server.
 - There are no external booking-platform integrations, email/SMS delivery, or paid messaging services. Offers are visible in the app.
 
-This is a local proof of concept. Its customer and studio screens share demo state on one computer; it is not a production service with customer authentication, tenancy, refunds, or operational monitoring. See `STATUS.md` and `DELIVERY.json` for the current validation evidence and remaining work.
+The customer and studio screens share demo state on one computer. Production authentication, tenancy, refunds and operational monitoring are outside the app’s scope. `STATUS.md` and `DELIVERY.json` record the original delivery and its verification limits.
 
 ## Technical outline
 

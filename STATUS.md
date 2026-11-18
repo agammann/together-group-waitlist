@@ -57,6 +57,6 @@ The [public repository](https://github.com/agammann/together-group-waitlist), [1
 
 ## Product limits
 
-The application serves one studio on one local computer. It has no external booking-platform integration, paid messaging, email/SMS delivery, production account/role system, tenancy, refunds, or operational monitoring. Customer adoption has not been tested. Browser checks and automated tests support the demonstrated prototype; they do not establish production readiness.
+The application serves one studio on one local computer. It has no external booking-platform integration, paid messaging, email/SMS delivery, production account/role system, tenancy, refunds, or operational monitoring. Customer adoption has not been tested. Browser checks and automated tests cover the local workflows documented above.
 
 See [README.md](README.md), [the demo script](docs/DEMO.md), [research](docs/RESEARCH.md), and [design rationale](docs/DESIGN.md) for setup and next steps.
